@@ -3,7 +3,7 @@ import { generateIdea } from "../api/ideaService";
 import { Book, Clock, Users, Palette, Wand2, Send, RefreshCw, Sparkles } from "lucide-react";
 
 export default function IdeaGeneratorMenu() {
-  const [topic, setTopic] = useState("");
+  const [storyStart, setStoryStart] = useState("");
   const [length, setLength] = useState("short");
   const [audience, setAudience] = useState("general");
   const [style, setStyle] = useState("fantasía");
@@ -30,7 +30,7 @@ export default function IdeaGeneratorMenu() {
     setIdea("");
 
     try {
-      const data = await generateIdea({ topic, length, audience, style });
+      const data = await generateIdea({ storyStart, length, audience, style });
       setIdea(data.idea);
     } catch (err) {
       setIdea("Error generando la idea");
@@ -122,14 +122,14 @@ export default function IdeaGeneratorMenu() {
                 <div className="group">
                   <label className="flex items-center text-white font-semibold mb-2 text-lg">
                     <Wand2 className="w-5 h-5 mr-2 text-yellow-300" />
-                    Tu Tema Mágico
+                    Inicio de tu Historia
                   </label>
                   <div className="relative">
                     <input
                       type="text"
                       placeholder="Ej: dragones en el espacio, robots con sentimientos..."
-                      value={topic}
-                      onChange={(e) => setTopic(e.target.value)}
+                      value={storyStart}
+                      onChange={(e) => setStoryStart(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && handleSubmit(e)}
                       className="w-full px-4 py-3 bg-white/20 border-2 border-purple-300/50 rounded-xl text-white placeholder-purple-200 focus:ring-4 focus:ring-pink-400 focus:outline-none focus:border-pink-400 transition-all backdrop-blur-sm"
                     />
@@ -223,7 +223,7 @@ export default function IdeaGeneratorMenu() {
                 {/* Submit Button */}
                 <button
                   onClick={handleSubmit}
-                  disabled={loading || !topic.trim()}
+                  disabled={loading || !storyStart.trim()}
                   className="w-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white py-4 rounded-xl font-bold text-lg hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl hover:shadow-pink-500/50 hover:scale-105 transform flex items-center justify-center group"
                 >
                   {loading ? (

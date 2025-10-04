@@ -1,6 +1,6 @@
 import api from "./api";
 
-export async function generateIdea({ topic, length, audience, style }) {
-  const response = await api.post("/idea", { topic, length, audience, style });
+export async function generateIdea({ storyStart, length, audience, style }) {
+  const response = await api.post("/idea", { storyStart, length, audience, style });
   return response.data;
 }
