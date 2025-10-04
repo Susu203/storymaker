@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "daemon": "^1.1.0"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm --prefix client run dev\" \"npm --prefix server run start\""
+  },
+  "dependencies": {
+    "lucide-react": "^0.544.0"
+  }
+}
